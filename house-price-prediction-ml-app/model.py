@@ -6,13 +6,13 @@ import pickle
 import numpy as np
 
 # ✅ Load everything
-with open("model.pkl", "rb") as f:
+with open(os.path.join(os.path.dirname(__file__), "model.pkl"), "rb") as f:
     model = pickle.load(f)
 
-with open("scaler.pkl", "rb") as f:
+with open(os.path.join(os.path.dirname(__file__), "scaler.pkl"), "rb") as f:
     scaler = pickle.load(f)
 
-with open("poly.pkl", "rb") as f:
+with open(os.path.join(os.path.dirname(__file__), "poly.pkl"), "rb") as f:
     poly = pickle.load(f)
 
 st.title("🏠 House Price Prediction")
