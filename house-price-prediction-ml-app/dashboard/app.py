@@ -1,3 +1,4 @@
+import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,8 +8,8 @@ from sklearn.linear_model import LinearRegression
 import os
 
 # Load dataset
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-data_path = os.path.join(BASE_DIR, 'data', 'kc_house_data.csv')
+data_path = "data/kc_house_data.csv"
+
 df = pd.read_csv(data_path)
 
 # Create total_rooms feature
@@ -53,6 +54,15 @@ X_test_poly = poly.transform(X_test)
 model = LinearRegression()
 model.fit(X_train_poly, y_train)
 
+# 🔽 Save model and transformers
+with open("model.pkl", "wb") as f:
+    pickle.dump(model, f)
+with open("scaler.pkl", "wb") as f:
+    pickle.dump(scalar, f)
+with open("poly.pkl", "wb") as f:
+    pickle.dump(poly, f)
+
+print("✅ Model saved successfully.")
 # Prepare smooth curve for visualization
 X_plot = np.linspace(X.min(), X.max(), 500).reshape(-1, 1)
 X_plot_poly = poly.transform(X_plot)
@@ -71,3 +81,4 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+

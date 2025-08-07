@@ -1,3 +1,6 @@
+import os
+os.environ["STREAMLIT_WATCH_DISABLE"] = "true"
+
 import streamlit as st
 import pickle
 import numpy as np
